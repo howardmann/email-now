@@ -1,7 +1,8 @@
 // Dependencies
 let R = require('ramda')
-let {validator, notBlank, emailRegex, mobileRegex} = require('./util.js')
+let {validator, notBlank, emailRegex, mobileRegex} = require('../util.js')
 
+// Validation
 let nameValidator = validator('Name must be string and not blank', notBlank)
 let emailValidator = validator('Must be valid email', emailRegex)
 let phoneValidator = validator('Must be valid mobile number', mobileRegex)

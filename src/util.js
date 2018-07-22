@@ -3,6 +3,12 @@ let util = module.exports = {}
 // Dependencies
 let _ = require('lodash')
 
+// FP helpers
+util.sideEffect = fn => d => {
+  fn(d)
+  return d
+}
+
 util.validator = (errorCode, fn) => {
   let fnClone = (...args) => fn.apply(fn, args)
   fnClone.errorCode = errorCode
