@@ -4,11 +4,14 @@ let expect = chai.expect;
 
 // Modules and test data
 let {
+  makeProcessEmail
+} = require('../src/emailHelper/processEmail')
+
+let {
   validPayload,
   highlightErrors
-} = require('../src/email')
+} = require('../src/emailHelper')
 
-let {makeProcessEmail} = require('../src/email/processEmail')
 
 describe('#email', () => {
   describe('.processEmail', () => {

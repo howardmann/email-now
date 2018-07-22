@@ -2,7 +2,7 @@ let emails = module.exports = {}
 
 // Dependencies
 let Email = require('../models/email') // email model
-let {processEmail} = require('../src/email/index') // processEmail
+let {processEmail} = require('../src/emailHelper/index') // processEmail
 
 emails.show = (req, res, next) => {
   let email = req.params.email
