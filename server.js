@@ -16,6 +16,7 @@ app.get('/', (req, res, next) => res.json({status: 'ok'}))
 
 // Email API routes
 app.get('/api/email/:email', emails.show)
+app.get('/api/email/', emails.index)
 app.post('/api/email', emails.create)
 
 
