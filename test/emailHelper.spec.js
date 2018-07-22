@@ -40,9 +40,12 @@ describe('#email', () => {
         phone: '0412038110'
       }
       let actual = {
-        name: 'Name must be string and not blank',
-        email: 'Must be valid email',
-        phone: '0412038110'
+        status: 'validation error',
+        payload: {
+          name: 'Name must be string and not blank',
+          email: 'Must be valid email',
+          phone: '0412038110'
+        }
       }
       let input = await processEmail(payload)
       expect(input).to.eql(actual)
@@ -79,9 +82,12 @@ describe('#email', () => {
       }
       let input = highlightErrors(payload)
       let actual = {
-        email: 'Must be valid email',
-        name: 'howie',
-        phone: 'Must be valid mobile number'
+        status: 'validation error',
+        payload: {
+          email: 'Must be valid email',
+          name: 'howie',
+          phone: 'Must be valid mobile number'
+        }
       }
       expect(input).to.eql(actual)
     })

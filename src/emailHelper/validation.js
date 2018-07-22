@@ -18,11 +18,20 @@ let validPayload = R.pipe(
 let checkValidator = (validator, d) =>
   validator(d) ? d : validator.errorCode
 
-let highlightErrors = ({email,name,phone}) => ({
-  email: checkValidator(emailValidator, email),
-  name: checkValidator(nameValidator, name),
-  phone: checkValidator(phoneValidator, phone)
+let returnErrors = ({email,name,phone}) => ({
+  status: 'validation error',
+  payload: {
+    email: checkValidator(emailValidator, email),
+    name: checkValidator(nameValidator, name),
+    phone: checkValidator(phoneValidator, phone)
+  }
 })
+
+let highlightErrors = R.ifElse(
+  validPayload,
+  R.identity,
+  returnErrors
+)
 
 module.exports = {
   validPayload,
