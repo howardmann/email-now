@@ -1,28 +1,35 @@
 // Core dependencies
 let express = require('express')
 let bodyParser = require('body-parser')
+let knex = require('./db/knex')
 
-// Utils
-let {validPayload,highlightErrors} = require('./src/email.js')
+// Controllers
+let emails = require('./controllers/emails')
+
 
 // Express
 let app = express()
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
-app.get('/', (req, res, next) => {
-  res.send({status: 'ok'})
-})
+app.get('/', (req, res, next) => res.json({status: 'ok'}))
 
-app.post('/api/email', (req, res, next) => {
-  let payload = req.body
-  if (validPayload(payload)){
-    // TODO: DB SEND
-    // TODO: EMAIL NOTIFICATION
-    return res.send({status: 'payload vaid success'})    
+// Email API routes
+app.get('/api/email/:email', emails.show)
+app.post('/api/email', emails.create)
+
+
+// Catch and send error messages
+app.use(function (err, req, res, next) {
+  if (err) {
+    res.status(422).send({
+      error: err.message
+    });
+  } else {
+    next();
   }
-  return res.send(highlightErrors(payload))
-})
+});
+
 
 const PORT = 3000
 
