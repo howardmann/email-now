@@ -1,5 +1,6 @@
 let knex = require('../knex.js')
 let sql = knex.raw
+
 exports.seed = async function (knex, Promise) {
   // ===Emails
   // Clear out DB
@@ -11,6 +12,7 @@ exports.seed = async function (knex, Promise) {
     INSERT INTO Emails (name, email, phone) VALUES
     ('howie', 'howie@email.com', '0412019110'),
     ('bob', 'bob@email.com', '0422219110'),
-    ('jane', 'jane@email.com', '0433319110')
+    ('jane', 'jane@email.com', '0433319110'),
+    ('cat', 'cat@email.com', '0411319110')
   `)
 }

@@ -38,4 +38,6 @@ knex migrate:latest --env production
 
 #Run seed files if desired for production
 knex seed:run --env production
+# Note sometimes this doesnt work so you will need to explicitly set the env as production
+NODE_ENV=production knex seed:run
 ```
